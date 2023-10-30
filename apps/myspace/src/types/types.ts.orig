@@ -1,0 +1,118 @@
+// export type employee = {
+//   employeeId: number;
+//   userId: number;
+//   firstName: string;
+//   middleName?: string;
+//   lastName: string;
+//   email: string;
+//   dateOfBirth: Date;
+//   gender: string;
+//   maritalStatus: string;
+//   pan?: string;
+//   aadhar?: string;
+//   nationality: string;
+//   otherNationality?: string;
+//   fatherName?: string;
+//   spouseName?: string;
+//   nomineeName?: string;
+//   nomineeRelation?: string;
+//   supervisorId?: number;
+//   status: string;
+//   mentorId?: number;
+//   defaultReportingManager?: number;
+//   employeeStatusCode?: string;
+//   employeeDeactivationReasonCode?: string;
+//   remarks?: string;
+//   isProfileCompleted?: boolean;
+// };
+
+export type employee = {
+  employeeId: number;
+  userId: number;
+  firstName: string;
+  middleName?: string;
+  lastName: string;
+  email: string;
+  dateOfBirth?: Date;
+  gender: string;
+  maritalStatus?: string;
+  pan?: string;
+  aadhar?: string;
+  bankAccount?: string;
+  nationality: string;
+  otherNationality?: string;
+  fatherName: string;
+  spouseName?: string;
+  nomineeName?: string;
+  nomineeRelation?: string;
+  supervisorId?: number;
+  status: string;
+  mentorId?: number;
+  defaultReportingManager?: number;
+  employeeStatusCode?: string;
+  employeeDeactivationReasonCode?: string;
+  remarks?: string;
+  isProfileCompleted?: boolean;
+  createdDate?: Date;
+  createdBy?: number;
+  modifiedDate?: Date;
+  modifiedBy?: number;
+  defaultReportingManagerNavigation?: object;
+  employments?: [];
+  inverseDefaultReportingManagerNavigation?: [];
+  inverseMentor?: [];
+  leaveRequests?: [];
+  mentor?: object;
+  projects?: [];
+};
+
+export type employeePersonalDetails = {
+  employeeId: number;
+  firstName: string;
+  middleName?: string;
+  lastName: string;
+  dateOfBirth?: Date;
+  gender: string;
+  maritalStatus: string;
+  pan?: string;
+  aadhar?: string;
+  bankAccount?: string;
+  nationality: string;
+  fatherName: string;
+  spouseName?: string;
+  nomineeName?: string;
+  nomineeRelation?: string;
+};
+
+export interface ILoginFormValues {
+  email: string;
+  password: string;
+}
+
+export interface ITableInitialValues {
+  pageIndex: number;
+  limit: number;
+  sortField: string;
+  orderBy: string;
+  query: string;
+  totalCount: number;
+}
+
+export interface getEmployeesResponseModel {
+  statusCode: number;
+  result: {
+    employeeList: employee[];
+    totalCount: number;
+  };
+  errorMessage: string[];
+}
+
+export type department = {
+  departmentId: number;
+  name: string;
+  createdDate?: Date;
+  createdBy?: number;
+  modifiedDate?: null;
+  modifiedBy?: null;
+  employments?: [];
+};

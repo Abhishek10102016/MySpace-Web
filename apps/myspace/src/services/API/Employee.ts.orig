@@ -1,0 +1,58 @@
+import { APICONSTANT, createAPIEndpoint } from '../../constants/API';
+import { ITableInitialValues, employee } from '../../types/types';
+
+// function getEmployeeList(requestObj: any) {
+//   let promise = new Promise((resolve, reject) => {
+//     axios
+//       .get(
+//         APICONSTANT.BASEURL +
+//           APICONSTANT.EMPLOYEE.EMPLOYEE_LIST +
+//           'PageCount=' +
+//           requestObj.pageNumber +
+//           '&RowCount=' +
+//           requestObj.rowsOfPage
+//       )
+//       .then((resp) => {
+//         resolve(resp.data);
+//       })
+//       .catch((err: any) => {
+//         reject(err);
+//       });
+//   });
+//   return promise;
+// }
+
+const getEmployeeList = async (reqObj: ITableInitialValues) => {
+  const searchParams = `PageCount=${reqObj.pageIndex}&RowCount=${reqObj.limit}&SortBy=${reqObj.sortField}&OrderBy=${reqObj.orderBy}&SearchBy=${reqObj.query}`;
+  const res = await createAPIEndpoint(
+    APICONSTANT.ENDPOINTS.EMPLOYEE.EMPLOYEE_LIST,
+    searchParams
+  )
+    .fetchAll()
+    .then((res) => res.data);
+  return res;
+};
+
+const getEmployeeById = async (id: number) => {
+  const res = await createAPIEndpoint(
+    APICONSTANT.ENDPOINTS.EMPLOYEE.EMPLOYEE_EDIT
+  )
+    .fetchById(id)
+    .then((res) => res.data);
+  return res;
+};
+
+const updateEmployee = async (reqObj: employee) => {
+  const res = await createAPIEndpoint(
+    APICONSTANT.ENDPOINTS.EMPLOYEE.EMPLOYEE_EDIT
+  )
+    .updatePut(reqObj)
+    .then((res) => res.data);
+  return res;
+};
+
+export const employeeService = {
+  getEmployeeList,
+  getEmployeeById,
+  updateEmployee,
+};
